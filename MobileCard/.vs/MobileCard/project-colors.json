@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "0184f366-ba70-4a04-8aff-803432b4a85c": {
+      "ProjectGuid": "0184f366-ba70-4a04-8aff-803432b4a85c",
+      "DisplayName": "MobileCard.API",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
