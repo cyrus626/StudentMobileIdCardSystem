@@ -44,6 +44,9 @@ section{
     display: flexbox;
     text-align: center;
 }
+section nav{
+    height: 100%;
+}
 nav{
     float: left;
     width: 30%;
@@ -68,13 +71,13 @@ button{
     transition: width 1s;
 }
 button.rectInput{border-style: solid;}
-input.rectInput:hover{ width: 50%}
-button.rectInput:hover{ width: 30%}
-/* .eForm{
+input.rectInput:hover select{ width: 50%}
+button.rectInput:hover select{ width: 30%}
+ .eForm{
     width: 50%;
     position: relative;
     float: left;
-} */
+}
 
 @media(max-width: 640px){
     .eForm{
