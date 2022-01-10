@@ -10,6 +10,7 @@ using NLog.Extensions.Logging;
 using NLog.Web;
 using NSwag;
 using NSwag.Generation.Processors.Security;
+using Sieve.Services;
 using System.Reflection;
 
 Core.Init(args);
@@ -81,6 +82,8 @@ services.AddDbContext<ApplicationContext>(opt =>
 
     opt.UseSqlite(connectionString);
 });
+
+services.AddScoped<ISieveProcessor, SieveProcessor>();
 
 var app = builder.Build();
 

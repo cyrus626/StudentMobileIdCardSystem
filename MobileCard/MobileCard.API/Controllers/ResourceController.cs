@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using MobileCard.API.Controllers.Responses;
@@ -17,17 +18,21 @@ namespace MobileCard.API.Controllers
     {
         #region Properties
         ApplicationContext DataContext { get; }
+
+        IMapper Mapper { get; }
         #endregion
 
         #region Constructors
-        public ResourceController(ApplicationContext dataContext)
+        public ResourceController(ApplicationContext dataContext, IMapper mapper)
         {
             DataContext = dataContext;
+            Mapper = mapper;
         }
         #endregion
 
         #region Methods
         [HttpPost("upload/enrollment/photo")]
+        [SwaggerOkResponse(typeof(BasicResourceViewModel), "Basic details about the new resource")]
         public async Task<IActionResult> UploadEnrollmentPhoto([FromForm]IFormFile file)
         {
             // TODO: Automatically delete resource files
@@ -37,7 +42,8 @@ namespace MobileCard.API.Controllers
             DataContext.Resources.Add(res);
             await DataContext.SaveChangesAsync();
 
-            return Ok(new BasicResourceViewModel(res.Id));
+            
+            return Ok(Mapper.Map<BasicResourceViewModel>(res));
         }
 
         [HttpGet("{resourceId}")]

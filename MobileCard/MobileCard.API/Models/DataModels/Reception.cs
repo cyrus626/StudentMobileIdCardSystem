@@ -12,10 +12,10 @@ namespace MobileCard.API.Models.DataModels
     public class AccountEnrollmentViewModel
     {
         [Required] public string FirstName { get; set; }
-        [Required] public string MiddleName { get; set; }
+        public string MiddleName { get; set; }
         [Required] public string LastName { get; set; }
         
-        [Required] public string MatricNumber { get; set; }
+        [Required, MinLength(6)] public string MatricNumber { get; set; }
         [Required] public string Gender { get; set; }
         [Required, Phone] public string PhoneNumber { get; set; }
         [Required, EmailAddress] public string Email { get; set; }

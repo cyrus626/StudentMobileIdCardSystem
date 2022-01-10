@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using MobileCard.API.Extensions.DataTypes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MobileCard.API.Models.Entities
 {
@@ -11,6 +12,9 @@ namespace MobileCard.API.Models.Entities
     [Table("Resources")]
     public class Resource : MetaEntity<Resource>
     {
+        [NotMapped]
+        public ShortGuid ShortId => new ShortGuid(new Guid(Id));
+
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
         public ResourcePurpose Purpose { get; set; }
 

@@ -6,7 +6,7 @@ using MobileCard.API.Models.Entities;
 
 namespace MobileCard.API.Services
 {
-    public class ApplicationContext : IdentityDbContext, IDesignTimeDbContextFactory<ApplicationContext>
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>, IDesignTimeDbContextFactory<ApplicationContext>
     {
         #region Properties
         public DbSet<EnrollmentApplication> EnrollmentApplications { get; set; }

@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MobileCard.API.Models.DataModels;
+using MobileCard.API.Models.Entities;
 
 namespace MobileCard.API.Models
 {
@@ -6,7 +8,7 @@ namespace MobileCard.API.Models
     {
         public ViewModelToEntityProfile()
         {
-
+            CreateMap<AccountEnrollmentViewModel, EnrollmentApplication>();
         }
     }
 
@@ -14,6 +16,9 @@ namespace MobileCard.API.Models
     {
         public EntityToViewModelProfile()
         {
+            CreateMap<ApplicationUser, AccountViewModel>();
+            CreateMap<Resource, BasicResourceViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.ShortId));
         }
     }
 }
