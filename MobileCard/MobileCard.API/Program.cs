@@ -1,5 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MobileCard.API;
 using MobileCard.API.Models;
+using MobileCard.API.Models.Entities;
+using MobileCard.API.Services;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using NSwag;
@@ -9,12 +15,15 @@ using System.Reflection;
 Core.Init(args);
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var services = builder.Services;
 
-builder.Services.AddControllers();
+// Add services to the container.
+services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddAuthorization().AddResponseCompression();
+
+builder.Services.AddRouting(opt => { opt.LowercaseUrls = true; });
 
 builder.Services.AddOpenApiDocument(doc =>
 {
@@ -46,6 +55,32 @@ builder.Services.AddAutoMapper(config =>
 
 
 builder.Logging.AddNLog();
+services.AddTransient<IJwtFactory, JwtFactory>();
+services.AddIdentityCore<ApplicationUser>(opt =>
+{
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 6;
+
+    opt.User.RequireUniqueEmail = true;
+    opt.Lockout.AllowedForNewUsers = false;
+}).AddEntityFrameworkStores<ApplicationContext>()
+.AddDefaultTokenProviders();
+
+services.AddDataProtection();
+
+services.AddDbContext<ApplicationContext>(opt =>
+{
+    string connectionString = new SqliteConnectionStringBuilder()
+    {
+        Mode = SqliteOpenMode.ReadWriteCreate,
+        DataSource = Core.DATABASE_PATH,
+    }.ConnectionString;
+
+    opt.UseSqlite(connectionString);
+});
 
 var app = builder.Build();
 

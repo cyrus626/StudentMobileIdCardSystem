@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using MobileCard.API.Models.DataModels;
+using MobileCard.API.Models.Entities;
+using MobileCard.API.Services;
 
 namespace MobileCard.API.Controllers
 {
@@ -8,19 +12,36 @@ namespace MobileCard.API.Controllers
     public class AuthController : ControllerBase
     {
         #region Properties
+        IMapper Mapper { get; }
+        ApplicationContext DataContext { get; }
+        UserManager<ApplicationUser> UserManager { get; }
+        #endregion
 
+        #region Constructors
+        public AuthController(IMapper mapper, ApplicationContext dataContext, UserManager<ApplicationUser> userManager)
+        {
+            Mapper = mapper;
+            DataContext = dataContext;
+        }
         #endregion
 
         #region Methods
-        public Task<IActionResult> Login([FromBody]LoginViewModel model)
+        public async Task<IActionResult> Login([FromBody]LoginViewModel model)
         {
+            
 
+            return Ok();
         }
 
         [HttpPost("enroll")]
-        public Task<IActionResult> Enroll([FromBody] AccountEnrollmentViewModel model)
+        public async Task<IActionResult> Enroll([FromBody] AccountEnrollmentViewModel model)
         {
+            var application = Mapper.Map<EnrollmentApplication>(model);
 
+            DataContext.EnrollmentApplications.Add(application);
+            await DataContext.SaveChangesAsync();
+
+            return Ok();
         }
         #endregion
 

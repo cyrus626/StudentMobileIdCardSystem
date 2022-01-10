@@ -36,6 +36,8 @@ namespace MobileCard.API
         #region Paths
         public static string RUNTIME_LOG_PATH => Path.Combine(LOG_DIR, RUNTIME_LOG_NAME + ".log");
         public static string ERROR_LOG_PATH => Path.Combine(LOG_DIR, ERROR_LOG_NAME + ".log");
+        public const string DATABASE_VERSION = "v1";
+        public readonly static string DATABASE_PATH = Path.Combine(DATA_DIR, $"Data-v{DATABASE_VERSION}.sqlite");
         #endregion
 
         #region Routes

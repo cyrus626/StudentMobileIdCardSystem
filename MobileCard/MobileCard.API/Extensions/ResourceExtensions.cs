@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.StaticFiles;
+using MobileCard.API.Extensions.DataTypes;
 using MobileCard.API.Models.Entities;
+using NLog;
+using ILogger = NLog.ILogger;
 
 namespace MobileCard.API.Extensions
 {
@@ -38,6 +41,7 @@ namespace MobileCard.API.Extensions
                 };
 
             await Executor.CautiouslyExecuteAsync(async () =>
+
             {
                 using (Stream stream = File.Create(resource.Path, 1024, FileOptions.Asynchronous))
                 {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MobileCard.API.Models.Entities
 {
     #region Abstractions
-    public enum ApplicationUserKind
+    public enum AccountKind
     {
         Student,
         Admin
@@ -20,6 +20,6 @@ namespace MobileCard.API.Models.Entities
         [Required] public string MatricNumber { get; set; }
         [Required] public string Gender { get; set; }
 
-        public ApplicationUserKind Kind { get; set; }
+        public AccountKind Kind { get; set; }
     }
 }
