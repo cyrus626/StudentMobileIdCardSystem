@@ -17,8 +17,8 @@ namespace MobileCard.API.Models
         public EntityToViewModelProfile()
         {
             CreateMap<ApplicationUser, AccountViewModel>();
-            CreateMap<Resource, BasicResourceViewModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(x => x.ShortId));
+            CreateMap<EnrollmentApplication, EnrollmentAccountViewModel>();
+            CreateMap<Resource, BasicResourceViewModel>();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace MobileCard.API.Models.DataModels
         [Required] public DateTime DateOfBirth { get; set; }
         [Required] public string NextOfKin { get; set; }
         [Required] public string NextOfKinPhoneNumber { get; set; }
+
+        [Required] public string PhotoId { get; set; }
     }
 
     public class AccessTokenViewModel

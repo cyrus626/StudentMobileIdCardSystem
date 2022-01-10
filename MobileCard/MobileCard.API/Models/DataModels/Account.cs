@@ -1,9 +1,10 @@
-﻿using Sieve.Attributes;
+﻿using MobileCard.API.Models.Entities;
+using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations;
 
 namespace MobileCard.API.Models.DataModels
 {
-    public class AccountViewModel
+    public class EnrollmentAccountViewModel
     {
         [Required] 
         public string Id { get; set; }
@@ -39,5 +40,12 @@ namespace MobileCard.API.Models.DataModels
         
         [Required, Sieve(CanFilter = true, CanSort = true)] public string NextOfKin { get; set; }
         [Required, Sieve(CanFilter = true, CanSort = true)] public string NextOfKinPhoneNumber { get; set; }
+
+        public string PhotoUrl { get; set; }
+    }
+
+    public class AccountViewModel : EnrollmentAccountViewModel 
+    {
+        public AccountKind Kind { get; set; }
     }
 }

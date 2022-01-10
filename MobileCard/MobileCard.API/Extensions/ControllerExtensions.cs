@@ -27,5 +27,7 @@ namespace MobileCard.API.Extensions
 
             return Task.FromResult(res);
         }
+
+        public static string GetRootUrl(this ControllerBase c) => c.Request.Scheme + "://" + c.Request.Host.Value;
     }
 }

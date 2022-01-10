@@ -19,5 +19,8 @@ namespace MobileCard.API.Models.Entities
         [Required] public DateTime DateOfBirth { get; set; }
         [Required] public string NextOfKin { get; set; }
         [Required] public string NextOfKinPhoneNumber { get; set; }
+
+        [Required]
+        public List<Resource> Resources { get; } = new List<Resource>();
     }
 }

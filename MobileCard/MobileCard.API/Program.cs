@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using MobileCard.API;
 using MobileCard.API.Models;
 using MobileCard.API.Models.Entities;
+using MobileCard.API.Models.Options;
 using MobileCard.API.Services;
 using NLog.Extensions.Logging;
 using NLog.Web;
@@ -54,6 +57,19 @@ builder.Services.AddAutoMapper(config =>
 
 }, Assembly.GetCallingAssembly());
 
+services.Configure<JwtIssuerOptions>(opt =>
+{
+    var auth = AuthSettings.Instance;
+    JwtIssuerOptions options = new JwtIssuerOptions();
+
+    options.SigningCredentials = new SigningCredentials(auth.SymmetricKey, SecurityAlgorithms.HmacSha512Signature);
+
+    opt.Issuer = "MobileCard";
+    opt.SigningCredentials = options.SigningCredentials;
+    opt.Subject = options.Subject;
+    opt.Audience = options.Audience;
+});
+
 
 builder.Logging.AddNLog();
 services.AddTransient<IJwtFactory, JwtFactory>();
@@ -85,6 +101,43 @@ services.AddDbContext<ApplicationContext>(opt =>
 
 services.AddScoped<ISieveProcessor, SieveProcessor>();
 
+services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    // options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(configureOptions =>
+{
+    // TODO: This is for demonstrations purposes only. Such a key should not be present in code
+
+    const string Issuer = "MobileCard";
+    var auth = AuthSettings.Instance;
+
+    configureOptions.ClaimsIssuer = Issuer;
+    configureOptions.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidIssuer = Issuer,
+
+        ValidateAudience = false,
+
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = auth.SymmetricKey,
+
+        RequireExpirationTime = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+    };
+    configureOptions.SaveToken = true;
+    configureOptions.RequireHttpsMetadata = false;
+});
+
+services.AddAuthorization();
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -92,6 +145,7 @@ if (app.Environment.IsDevelopment())
 {
     const string docsRoute = "/api/docs";
     const string ProductName = Core.PRODUCT_NAME;
+    const string ProductVersion = Core.PRODUCT_VERSION;
 
     app.UseOpenApi(config =>
     {
@@ -107,11 +161,15 @@ if (app.Environment.IsDevelopment())
     app.UseReDoc(config =>
     {
         config.Path = $"{docsRoute}/redoc";
-        config.DocumentPath = docsRoute + $"/swagger/{ProductName}/swagger.json";
+        config.DocumentPath = docsRoute + $"/swagger/{ProductVersion}/swagger.json";
     });
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
+
+Core.Finalize(app.Services);
 app.Run();

@@ -19,5 +19,8 @@ namespace MobileCard.API.Controllers.Responses
         public static SingleApiResponse ResourceUploadFailed { get; }
             = new SingleApiResponse(nameof(ResourceUploadFailed),
                 "An unexpected error occured during the upload process. Please try again.");
+
+        public static SingleApiResponse ResourceNotIncluded { get; }
+            = new SingleApiResponse(nameof(ResourceNotIncluded), "Failed to find resource. Please ensure that the resource was named '{0}'.");
     }
 }

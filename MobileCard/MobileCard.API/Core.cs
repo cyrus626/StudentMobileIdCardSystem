@@ -1,4 +1,9 @@
 ﻿using FluentScheduler;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MobileCard.API.Extensions;
+using MobileCard.API.Models.Entities;
+using MobileCard.API.Services;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -9,6 +14,7 @@ namespace MobileCard.API
     {
         #region Properties
         public static IWebHostEnvironment HostEnvironment { get; private set; }
+        public static string[] StartupArguments { get; private set; } = new string[0];
         public static Logger Log { get; } = LogManager.GetCurrentClassLogger();
 
         #region Solids
@@ -36,7 +42,7 @@ namespace MobileCard.API
         #region Paths
         public static string RUNTIME_LOG_PATH => Path.Combine(LOG_DIR, RUNTIME_LOG_NAME + ".log");
         public static string ERROR_LOG_PATH => Path.Combine(LOG_DIR, ERROR_LOG_NAME + ".log");
-        public const string DATABASE_VERSION = "v1";
+        public const string DATABASE_VERSION = "1";
         public readonly static string DATABASE_PATH = Path.Combine(DATA_DIR, $"Data-v{DATABASE_VERSION}.sqlite");
         #endregion
 
@@ -70,10 +76,67 @@ namespace MobileCard.API
         #region Methods
         public static void Init(string[] args)
         {
+            IOExtensions.CreateDirectories(WORK_DIR, DATA_DIR, LOG_DIR);
+            StartupArguments = args;
             ConfigureLogger();
+        }
+
+        public static void Finalize(IServiceProvider provider)
+        {
+            provider = provider.CreateScope().ServiceProvider;
+            InitializeData(provider).Wait();
+        }
+
+        static async Task InitializeData(IServiceProvider provider)
+        {
+            var dataContext = provider.GetService<ApplicationContext>();
+
+            //if (StartupArguments.Contains("--apply-migrations"))
+            //{
+            //    dataContext.Database.Migrate();
+            //    Log.Debug("Migrations have been successfully applied");
+            //    Environment.Exit(0);
+            //    return;
+            //}
+
+            if (StartupArguments.Contains("--drop-db"))
+            {
+                dataContext.Database.EnsureDeleted();
+                Log.Debug("Database has been successfully deleted");
+                Environment.Exit(0);
+                return;
+            }
+
+            dataContext.Database.Migrate();
+            var userManager = provider.GetService<UserManager<ApplicationUser>>();
+
+            string username = "admin";
+            string password = "admin@321";
+
+            if ((await userManager.FindByNameAsync(username)) == null)
+            {
+                Log.Debug("Initializing data");
+
+                ApplicationUser admin = new ApplicationUser()
+                {
+                    UserName = username,
+                    Email = "admin@school.com",
+                    LastName = "Administrator",
+                    Kind = AccountKind.Admin
+                };
+
+                IdentityResult result = await userManager.CreateAsync(admin, password);
+
+                if (!result.Succeeded)
+                    Core.Log.Error("An error occured while attempting to create the default admin");
+
+                await dataContext.SaveChangesAsync();
+                Log.Debug("Data Initialization Complete");
+            }
         }
         #endregion
 
+        #region Methods
         public static void ConfigureLogger()
         {
             var config = new LoggingConfiguration();
@@ -126,5 +189,8 @@ namespace MobileCard.API
                 ConfigureLogger();
             }, s => s.ToRunOnceAt(nextMonth));
         }
+
+
+        #endregion
     }
 }

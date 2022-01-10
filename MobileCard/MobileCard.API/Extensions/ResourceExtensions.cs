@@ -53,6 +53,16 @@ namespace MobileCard.API.Extensions
 
         public static Task<bool> MoveAsync(Resource source, Resource destination)
         {
+            if (!source.IsLocal || !destination.IsLocal)
+                throw new InvalidOperationException("Only local resources are allowed");
+
+            if (string.IsNullOrWhiteSpace(destination.Path))
+            {
+                string ext = Path.GetExtension(source.Path);
+
+                destination.Path = destination.ToStorage().MapTo(destination.GetMeta()) + ext;
+            }
+
             IOExtensions.CreateFileDirectory(destination.Path);
 
             if (IOExtensions.TryCopy(source.Path, destination.Path, out _, true, true))
@@ -97,14 +107,15 @@ namespace MobileCard.API.Extensions
             return "";
         }
 
-        public static string ToEndpoint(this Resource resource)
+        public static string ToEndpoint(this Resource resource, string root = "")
         {
             if (!resource.IsLocal) return resource.Path;
+            if (string.IsNullOrWhiteSpace(root)) root = Core.BASE_URL;
 
             string endpoint = ResourceTemplates.Endpoints.BASE
-                .Replace("{{Id}}", new ShortGuid(Guid.Parse(resource.Id)));
+                .Replace("{{Id}}", resource.ShortId);
 
-            endpoint = Core.BASE_URL + endpoint;//?.MapTo(resource.GetMeta());
+            endpoint = root + endpoint;//?.MapTo(resource.GetMeta());
             return endpoint;
         }
 

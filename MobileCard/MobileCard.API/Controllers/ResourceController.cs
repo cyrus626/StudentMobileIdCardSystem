@@ -35,15 +35,38 @@ namespace MobileCard.API.Controllers
         [SwaggerOkResponse(typeof(BasicResourceViewModel), "Basic details about the new resource")]
         public async Task<IActionResult> UploadEnrollmentPhoto([FromForm]IFormFile file)
         {
+            if (file == null)
+            {
+                var resourceRes = ResourceResponses.ResourceNotIncluded;
+                var err = resourceRes.FirstOrDefault();
+                err.Description = string.Format(err.Description, nameof(file));
+
+                return BadRequest(resourceRes);
+            }
+
             // TODO: Automatically delete resource files
             Resource res = new Resource(file, ResourcePurpose.Temporary);
-            await ResourceExtensions.DownloadAsync(res, file);
+            
 
             DataContext.Resources.Add(res);
             await DataContext.SaveChangesAsync();
 
-            
-            return Ok(Mapper.Map<BasicResourceViewModel>(res));
+            res.SetMeta(meta =>
+            {
+                meta[ResourceTemplates.Keys.AssetId] = res.Id;
+            });
+            await ResourceExtensions.DownloadAsync(res, file);
+
+            DataContext.Resources.Update(res);
+            await DataContext.SaveChangesAsync();
+
+
+            var model = Mapper.Map<BasicResourceViewModel>(res);
+
+            if (!res.IsLocal) model.Url = res.Path;
+            else model.Url = res.ToEndpoint(this.GetRootUrl());
+
+            return Ok(model);
         }
 
         [HttpGet("{resourceId}")]
@@ -67,7 +90,7 @@ namespace MobileCard.API.Controllers
             }
 
 
-            if (res?.IsLocal ?? false) return Redirect(res.Path);
+            if (!res?.IsLocal ?? false) return Redirect(res.Path);
             if (res == null || !IOFile.Exists(res.Path))
                 return BadRequest(ResourceResponses.ResourceNotFound);
             

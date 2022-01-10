@@ -2,6 +2,8 @@
 
 namespace MobileCard.API.Models.Options
 {
+
+
     public class JwtIssuerOptions
     {
         #region Properties

@@ -13,20 +13,22 @@ namespace MobileCard.API.Models.Entities
 
     public class ApplicationUser : IdentityUser
     {
-        [Required] public string FirstName { get; set; }
+        public string FirstName { get; set; }
         public string MiddleName { get; set; }
-        [Required] public string LastName { get; set; }
+        public string LastName { get; set; }
 
-        [Required] public string MatricNumber { get; set; }
-        [Required] public string Gender { get; set; }
+        public string MatricNumber { get; set; }
+        public string Gender { get; set; }
 
         public AccountKind Kind { get; set; }
 
-        [Required] public string Department { get; set; }
-        [Required] public string Faculty { get; set; }
-        [Required] public DateTime DateOfBirth { get; set; }
-        [Required] public string NextOfKin { get; set; }
-        [Required] public string NextOfKinPhoneNumber { get; set; }
+        public string Department { get; set; }
+        public string Faculty { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string NextOfKin { get; set; }
+        public string NextOfKinPhoneNumber { get; set; }
+
+        public List<Resource> Resources { get; } = new List<Resource>();
 
         #region Constructors
         public ApplicationUser() { }
