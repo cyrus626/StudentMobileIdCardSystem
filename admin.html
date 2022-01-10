@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Mobile Id</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="mobileId.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    </head>
+    <body>
+        <h3 class="mbody">UofA Mobile Id</h3>
+        <div>
+            <header class="mbody">
+                <h1 style="text-align: center;">Admin</h1>
+            </header>
+            <div>
+                <nav class="mbody">
+                </nav>
+                <section class="mbody">
+                    <!-- All table records would be displayed here -->
+                    <table id="tables"></table>
+                    <!-- ignore the table below -->
+                    <!-- <div>
+                        <table>
+                            <tr>
+                                <th>S/N</th><th>Matric No</th><th>Name</th>
+                            </tr>
+                            <tr><td>1</td><td>matricNo</td><td>fullName</td></tr>
+                            <tr><td>1</td><td>matricNo</td><td>fullName</td></tr>
+                        </table>
+                    </div> -->
+                </section>
+            </div>   
+        </div>
+        <script>
+            //  n would be the total number of records in the database.
+            //  how would one access each record one at a time in other to fill the table?
+            var i = 0, n = 5, matricNo, fullName;
+            document.getElementById("tables").innerHTML += "<table id='records'>"
+            + "<tr><th>S/N</th><th>Matric No</th><th>Name</th></tr>"
+            // iteration that would creates a row for each record.
+            // Hibernate mode for now
+            do{
+                i++;
+                document.getElementById("tables").innerHTML += "<tr><td>"+ i +
+                    "</td><td>matricNo</td><td>fullName</td></tr>";
+            }while(i < n);
+            // the next line is disturbing the whole table.
+            //document.getElementById("tables").innerText = "</table>";
+        </script>
+        <style>
+            table#records{
+                border-style: double;
+                padding: 5px;
+            }
+        </style>
+    </body>
+</html>

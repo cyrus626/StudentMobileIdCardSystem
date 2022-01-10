@@ -8,4 +8,4 @@ function myFunctn(){
     else{
         document.getElementById("reslt").innerHTML = "Password matched";
     }
-}      
+}
