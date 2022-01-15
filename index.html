@@ -19,16 +19,16 @@
                     <img src="images/login.jpg" alt="#login picture" width="100%"/>
                 </nav>
                 <section class="mbody">
-                    <form class="">
+                    <form action="https://localhost:7252/api/auth/login" method="post">
                         <div>
                             <div>
-                                <input class="rectInput" name="userId" required="required" placeholder="Matric number*"/>
+                                <input class="rectInput" name="username" required="required" placeholder="Matric number*"/>
                             </div>
                             <div>
                                 <input class="rectInput" name="password" required="required" placeholder="Password*"/>
                             </div>
                             <div>
-                                <button class="rectInput">Login</button>
+                                <button class="rectInput" type="submit">Login</button>
                             </div>
                         </div>
                         <a>forgot password</a> 
