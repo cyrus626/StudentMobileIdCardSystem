@@ -140,6 +140,12 @@ services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseCors(x => 
+	x.AllowAnyMethod()
+	.AllowAnyHeader()
+	// .AllowCredentials()
+	.WithOrigins("*"));
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
