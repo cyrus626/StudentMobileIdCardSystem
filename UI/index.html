@@ -26,7 +26,7 @@
                     <img src="images/login.jpg" alt="#login picture" width="100%"/>
                 </nav>
                 <section class="mbody">
-                    <form action="https://localhost:7252/api/auth/login" method="post">
+                    <form>
                         <div>
                             <div>
                                 <input class="rectInput" name="username" required="required" placeholder="Matric number*"/>
@@ -35,7 +35,7 @@
                                 <input class="rectInput" name="password" required="required" placeholder="Password*"/>
                             </div>
                             <div>
-                                <button class="rectInput" type="submit">Login</button>
+                                <button onclick="init()" class="rectInput" type="submit">Login</button>
                             </div>
                         </div>
                         <a>forgot password</a> 

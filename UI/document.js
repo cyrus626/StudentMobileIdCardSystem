@@ -12,11 +12,12 @@ function myFunctn(){
         document.getElementById("reslt").innerHTML = "Password matched";
     }
 }
-
+var userName = document.getElementsByName("username").innerHTML;
+var pasword = document.getElementsByName("password").innerHTML;
 function init() {
     axios.post("https://localhost:7252/api/auth/login", {
-        username: "admin",
-        password: "admin" // real password: admin@321
+        username: userName,
+        password: pasword // real password: admin@321
     })
     .then(res => {
         console.log("Login successful", res.data);
