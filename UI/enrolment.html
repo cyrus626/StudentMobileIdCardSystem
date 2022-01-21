@@ -7,53 +7,39 @@
         <link rel="stylesheet" href="mobileId.css"/>
     </head>
     <body>
-        <h3>UofA Mobile Id</h3>
+        <h3 class="mbody">UofA Mobile Id</h3>
         <div>
-            <header>
+            <header class="mbody">
                 <h1 style="text-align: center;">Enrolment</h1>
             </header>
-            <section style="width: 100%">
+            <section style="width: 100%" class="mbody">
                 <div class="eForm">
-                    <input placeholder="First name*" required="required" class="rectInput"/>
-                </div>
-                <div class="eForm">
-                    <input placeholder="Middle name*" class="rectInput"/>
-                </div>
-                <div class="eForm">
-                    <input placeholder="Last name*" class="rectInput" required="required"/>
-                </div>
-                <div class="eForm">
-                    <input placeholder="Passport*" required="required" type="file" class="rectInput">
-                </div>
-                <div class="eForm">
+                    <h5>Other data</h5>
                     <input placeholder="Matric Number*" required="required" class="rectInput">
-                </div>
-                <div class="eForm">
+                    <input placeholder="Department*" class="rectInput" required="required"/>
+                    <input placeholder="Faculty*" class="rectInput" required="required"/>
+                    <input type="number" id="selectDate"></input>
                     <Select required='required' class="rectInput">
                         <option>Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </Select>
-                </div>
-                <div class="eForm">
                     <input class="rectInput" placeholder="Phone number"/>
-                </div>
-                <div class="eForm">
                     <input placeholder="Email" class="rectInput"/>
                 </div>
                 <div class="eForm">
-                    <input placeholder="Department*" class="rectInput" required="required"/>
+                    <h5>Enter your name</h5>
+                    <input placeholder="First name*" required="required" class="rectInput"/>
+                    <input placeholder="Middle name" class="rectInput" title="Its optional"/>
+                    <input placeholder="Last name*" class="rectInput" required="required"/>
                 </div>
                 <div class="eForm">
-                    <input placeholder="Faculty*" class="rectInput" required="required"/>
+                    <h5>Choose passport file</h5>
+                    <input name="Passport*" accept="image/*" class="rectInput" required="required" type="file" class="rectInput">
                 </div>
                 <div class="eForm">
-                    <input type="date" class="rectInput" placeholder="Year of entry"/>
-                </div>
-                <div class="eForm">
+                    <h5>Next of Kin's data</h5>
                     <input placeholder="Next of kin*" class="rectInput" required="required"/>
-                </div>
-                <div class="eForm">
                     <input placeholder="Next of Kin's contact*" class="rectInput" required="required"/>
                 </div>
                 <div class="eForm">
@@ -61,5 +47,22 @@
                 </div>
             </section>
         </div>
+        <footer class="mbody">
+            <p>Designed by Momoh Cyrus &copy; <showdate></showdate></p> 
+        </footer>
+        <script>
+            var today = new Date();
+            document.getElementsByTagName("showdate").innerHTML =+ new today.getMonth() + " " + today.getFullYear() ;
+            //Why are you not working
+            var maxYearOfEntry = 2022; // this new Date().getFullYear() instead of 2022;
+            var minYearOfEntry = maxYearOfEntry - 9;
+            var datePickerOutput =+ "<select><option>Year of Entry<th></option>";
+            for(minYearOfEntry; minYearOfEntry <= maxYearOfEntry; minYearOfEntry++){
+            datePickerOutput =+ "<option value='"+ minYearOfEntry +"'>"+ minYearOfEntry +
+            minYearOfEntry + "</td></tr>";
+            }
+            datePickerOutput =+ "</select>";
+            docuument.getElementById("selectDate").innerHTML =+ datePickerOutput;
+        </script>
     </body>
 </html>
