@@ -9,10 +9,11 @@ body
 }
 .mbody{
     margin: 1px;
-    background-color: rgb(255, 166, 0);
+    background-color: rgb(255, 189, 8);
     border-radius: 15px;
     padding: 15px;
 }
+footer{ text-align: center;}
 ul{
     list-style: none;
 }
@@ -24,7 +25,7 @@ h3
     font-size: 20px;
     line-height: 23px;
     letter-spacing: -0.02em;
-    color: rgba(0, 0, 0);
+    color: rgb(0, 0, 0);
     padding-right: 15px;
 }
 h1{
@@ -37,10 +38,8 @@ h1{
 }
 section{
     position: relative;
-    float: left;
-    display: inline;
+    display: table;
     width: 69%;
-    display: flexbox;
     text-align: center;
 }
 nav{
@@ -69,17 +68,19 @@ button{
 button.rectInput{border-style: solid;}
 input.rectInput:hover select{ width: 50%}
 button.rectInput:hover select{ width: 30%}
- .eForm{
-    width: 45%;
+.eForm{
     position: relative;
+    display: inline;
     float: left;
+    width: 45%;
     border: solid rgba(34, 34, 34, 0.5);
-    border-top-left-radius: 7px; border-bottom-right-radius: 7px;
-    border-top-right-radius: 4px; border-bottom-left-radius: 4px;
+    border-top-left-radius: 7px; 
+    border-bottom-right-radius: 7px;
+    border-top-right-radius: 4px; 
+    border-bottom-left-radius: 4px;
     background-color: rgba(0, 0, 0, 0.25);
     margin: 5px;
 }
-
 @media(max-width: 640px){
     .rectInput{
         width: 80%;
@@ -88,6 +89,7 @@ button.rectInput:hover select{ width: 30%}
         width: 70%;
         margin: 7px;
         position: relative;
+        display: inline;
         float: left;
         border: solid rgba(34, 34, 34, 0.5);
         border-top-left-radius: 7px; border-bottom-right-radius: 7px;
