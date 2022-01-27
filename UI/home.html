@@ -21,7 +21,11 @@
             <nav class="mbody">
                 <ul>
                     <li>View card</li>
-                    <li>Log out</li>
+                    <li>
+                        <a href="#" onclick="logout()">
+                            Log out
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <section class="mbody">
@@ -40,4 +44,16 @@
         </div>
             
     </body>
+
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/endpoints.js"></script>
+    <script src="./js/adminEndpoints.js"></script>
+
+
+    <script src="./js/document.js"></script>
+    <script src="./js/home.js"></script>
+    
+    <script>
+        init();
+    </script>
 </html>

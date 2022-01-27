@@ -15,6 +15,11 @@
             </header>
             <div>
                 <nav class="mbody">
+                    <li>
+                        <a href="#" onclick="logout()">
+                            Log out
+                        </a>
+                    </li>
                 </nav>
                 <section class="mbody">
                     <!-- All table records would be displayed here -->
@@ -55,4 +60,13 @@
             }
         </style>
     </body>
+
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/endpoints.js"></script>
+    <script src="./js/adminEndpoints.js"></script>
+    <script src="./js/admin.js"></script>
+
+    <script>
+        init();
+    </script>
 </html>

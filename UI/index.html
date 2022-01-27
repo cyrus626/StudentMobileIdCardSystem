@@ -6,13 +6,6 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./css/mobileId.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        
-        <script src="./js/axios.min.js" type="text/javascript"></script>
-        <script src="./document.js"></script>
-        <script>
-            init();
-            console.log("Hell");
-        </script>
     </head>
     <body  body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0>
         <h3 class="mbody">UofA Mobile Id</h3>
@@ -23,16 +16,16 @@
             <div class="">
                 <section class="mbody" style="width:100%;">
                     <img src="./images/uersprofile.jpeg" width="20%"/>
-                    <form action="https://localhost:7252/api/auth/login" method="post">
+                    <form onsubmit="handleLogin(event)">
                         <div>
                             <div>
-                                <input class="rectInput" name="username" required="required" placeholder="Matric number*"/>
+                                <input class="rectInput" id="usernameField" name="username" required="required" placeholder="Matric number*"/>
                             </div>
                             <div>
-                                <input class="rectInput" name="password" type="password" required="required" placeholder="Password*"/>
+                                <input class="rectInput" id="passwordField" type="password" required="required" placeholder="Password*"/>
                             </div>
                             <div>
-                                <button onclick="init()" class="rectInput" type="submit">Login</button>
+                                <button class="rectInput">Login</button>
                             </div>
                         </div> 
                         <br/>       
@@ -44,6 +37,12 @@
                         Designed by Momoh Cyrus @<em id="showDate"></em> 
                     </p>
                 </footer>
+
+                <script src="./js/axios.min.js"></script>
+                <script src="./js/endpoints.js"></script>
+                <script src="./js/adminEndpoints.js"></script>
+                
+                <script src="./js/document.js"></script>
                 <script src="./js/document2.js"></script>
             </div>   
         </div>    
