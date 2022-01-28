@@ -1,0 +1,48 @@
+<!Doctype HTMl>
+<html>
+    <head>
+        <title>Student Mobile Id</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="./css/mobileId.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    </head>
+    <body>
+        <h3 class="mbody">UofA Mobile Id</h3>
+        
+        <div>
+            <header class="mbody">
+                <h1 style="text-align: center;">Completing setup</h1>
+            </header>
+            <nav class="mbody">
+                <ul style="margin: 5px;">
+                    <li disabled="disabled">View card</li>
+                    <li><a href="index.html">Log out</a></li>
+                </ul>
+            </nav>
+            <section class="mbody">
+                <!-- <form> -->
+                    <div class="eForm">
+                        <input name="matricNo" placeholder="Matric number" disabled="disabled" class="rectInput"/>
+                    </div>
+                    <div class="eForm">
+                        <input name="pword0" id="pword0" placeholder="Type your password*" class="rectInput"/>
+                    </div>
+                    <div class="eForm">
+                        <input name="pword1" id="pword1" placeholder="Confirm password*" onkeyup="myFunctn()" class="rectInput" required="required"/>
+                    </div>
+                    <div class="eForm">
+                        <p id="reslt"></p>
+                    </div>
+                    <div class="eForm">
+                        <button class="rectInput">Submit</button>
+                    </div>
+                <!-- </form> -->
+            </section>
+            <footer>
+                
+            </footer>   
+        </div>
+        <script src="document.js"></script>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student Mobile Id</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="./css/mobileId.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    </head>
+    <body>
+        <!-- Not yet completed -->
+        <h3 class="mbody">UofA Mobile Id</h3>
+        <div>
+            <header class="mbody">
+                <!--Display matric number when loaded-->
+                <h1 id="mNumber"style="text-align: center;">MATRIC NUMBER</h1>
+            </header>
+            <div>
+                <nav class="mbody">
+                </nav>
+                <section class="mbody">
+                    <div class="cardHead">
+                        <div style="float: left;
+                        width: 69%;
+                        text-align: center;">
+                            <h2>UNIVERSITY OF ABUJA</h3>
+                            <h4>FEDERAL CAPITAL TERRITORY</h4>
+                            <p class="cardHeader">STUDENT IDENTITY CARD</p>
+                        </div>
+                        <div>
+                            <img alt="UOfA logo" src="images/uofa.png" width="120px" />
+                        </div>
+                    </div>
+                    <div class="cardBody">
+                        <div style="float: left;
+                        width: 30%;
+                        text-align: center;">
+                            <img id="usersPassport" alt="usersPassport" src="#"/>
+                        </div>
+                        <div width="69%">
+                            <table>
+                                <tr><th>Reg.No.</th><td>Matric number</td></tr>
+                                <tr><th>Name:</th><td>full name</td></tr>
+                                <tr><th>Year of entry:</th><td>year of entry</td></tr>
+                                <tr><th>Course of study:</th><td>course of study</td></tr>
+                                <tr><th>Faculty:</th><td>faculty</td></tr>
+                                <tr><th>Blood Group:</th><td>bloodgroup</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>   
+        </div>
+        <style>
+            #usersPassport{
+                width: 40%; 
+                width: 150px; 
+                border-top-left-radius: 5px; 
+                border-bottom-right-radius:5px;
+
+            }
+            .cardHead::after{
+                content: none;
+            }
+            P.cardHeader{
+                border-radius: 10px;
+                background-color: red;
+                color: white;
+                padding: 5px;
+            }
+            .cardHead .cardBody{
+                padding: 0px;
+                position: relative;
+                float: left;
+            }
+            table{
+                text-align: left;
+            }
+        </style>
+    </body>
+</html>
