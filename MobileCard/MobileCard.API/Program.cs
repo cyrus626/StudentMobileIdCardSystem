@@ -177,5 +177,10 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 
+
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 Core.Finalize(app.Services);
 app.Run();
+
