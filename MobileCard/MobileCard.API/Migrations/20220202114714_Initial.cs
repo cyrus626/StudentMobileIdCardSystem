@@ -36,7 +36,7 @@ namespace MobileCard.API.Migrations
                     Kind = table.Column<int>(type: "INTEGER", nullable: false),
                     Department = table.Column<string>(type: "TEXT", nullable: true),
                     Faculty = table.Column<string>(type: "TEXT", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    YearOfEntry = table.Column<int>(type: "INTEGER", nullable: false),
                     NextOfKin = table.Column<string>(type: "TEXT", nullable: true),
                     NextOfKinPhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -73,7 +73,7 @@ namespace MobileCard.API.Migrations
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Department = table.Column<string>(type: "TEXT", nullable: false),
                     Faculty = table.Column<string>(type: "TEXT", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    YearOfEntry = table.Column<int>(type: "INTEGER", nullable: false),
                     NextOfKin = table.Column<string>(type: "TEXT", nullable: false),
                     NextOfKinPhoneNumber = table.Column<string>(type: "TEXT", nullable: false)
                 },

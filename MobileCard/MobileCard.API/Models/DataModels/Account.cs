@@ -36,7 +36,7 @@ namespace MobileCard.API.Models.DataModels
         [Required, Sieve(CanFilter = true, CanSort = true)]
         public string Faculty { get; set; }
         [Required, Sieve(CanSort = true)]
-        public DateTime DateOfBirth { get; set; }
+        public int YearOfEntry { get; set; }
         
         [Required, Sieve(CanFilter = true, CanSort = true)] public string NextOfKin { get; set; }
         [Required, Sieve(CanFilter = true, CanSort = true)] public string NextOfKinPhoneNumber { get; set; }

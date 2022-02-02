@@ -24,7 +24,7 @@ namespace MobileCard.API.Models.Entities
 
         public string Department { get; set; }
         public string Faculty { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public int YearOfEntry { get; set; }
         public string NextOfKin { get; set; }
         public string NextOfKinPhoneNumber { get; set; }
 
@@ -43,7 +43,7 @@ namespace MobileCard.API.Models.Entities
             Email = app.Email;
             Department = app.Department;
             Faculty = app.Faculty;
-            DateOfBirth = app.DateOfBirth;
+            YearOfEntry = app.YearOfEntry;
             NextOfKin = app.NextOfKin;
             NextOfKinPhoneNumber = app.NextOfKinPhoneNumber;
 

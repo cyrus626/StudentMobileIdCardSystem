@@ -21,7 +21,7 @@ namespace MobileCard.API.Models.DataModels
         [Required, EmailAddress] public string Email { get; set; }
         [Required] public string Department { get; set; }
         [Required] public string Faculty { get; set; }
-        [Required] public DateTime DateOfBirth { get; set; }
+        [Required] public int YearOfEntry { get; set; }
         [Required] public string NextOfKin { get; set; }
         [Required] public string NextOfKinPhoneNumber { get; set; }
 

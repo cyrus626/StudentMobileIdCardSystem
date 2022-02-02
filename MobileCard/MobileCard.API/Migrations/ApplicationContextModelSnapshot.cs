@@ -157,9 +157,6 @@ namespace MobileCard.API.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Department")
                         .HasColumnType("TEXT");
 
@@ -230,6 +227,9 @@ namespace MobileCard.API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("YearOfEntry")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -246,9 +246,6 @@ namespace MobileCard.API.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Department")
@@ -294,6 +291,9 @@ namespace MobileCard.API.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("YearOfEntry")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
