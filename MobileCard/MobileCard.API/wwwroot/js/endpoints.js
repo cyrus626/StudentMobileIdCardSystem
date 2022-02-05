@@ -87,12 +87,14 @@ function getAccount() {
             getError(err, true);
         }).finally(() => isBusy = false);
 }
-
+let fName = document.getElementByName("firstName").innerHTML;
+let lName = document.getElementByName("firstName").innerHTML;
+let passWord = fName+lName;
 function enrollUser(model) {
     return $axios.post(ENROLL, model)
         .then(res => {
             // Report success to user
-            alert("Successful!, \n Data collected");
+            alert(`Successful!, \n Data collected\n userId: matric number\n password: ${passWord}`);
         }).catch(err => {
             getError(err, true);
         });
