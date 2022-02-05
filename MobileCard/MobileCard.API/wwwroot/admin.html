@@ -8,64 +8,42 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     </head>
     <body>
-        <h3 class="mbody">UofA Mobile Id</h3>
-        <div>
-            <header class="mbody">
+        <h3 class="mbody">
+            UofA Mobile Id
+        </h3>
+        <header class="mbody">
                 <h1 style="text-align: center;">Admin</h1>
-            </header>
-            <div>
-                <nav class="mbody">
-                    <li>
-                        <a href="#" onclick="logout()">
-                            Log out
-                        </a>
-                    </li>
-                </nav>
-                <section class="mbody">
-                    <!-- All table records would be displayed here -->
-                    <table id="tables"></table>
-                    <!-- ignore the table below -->
-                    <!-- <div>
-                        <table>
-                            <tr>
-                                <th>S/N</th><th>Matric No</th><th>Name</th>
-                            </tr>
-                            <tr><td>1</td><td>matricNo</td><td>fullName</td></tr>
-                            <tr><td>1</td><td>matricNo</td><td>fullName</td></tr>
-                        </table>
-                    </div> -->
-                </section>
-            </div>   
+        </header>
+        <div class="mbody">
+            <li>
+                <a href="#" onclick="logout()">
+                    Log out
+                </a>
+            </li>
+            <li>
+                <a onclick="enrollNow()">
+                    Enroll new user?
+                </a>
+            </li>
         </div>
-        <script>
-            //  n would be the total number of records in the database.
-            //  how would one access each record one at a time in other to fill the table?
-            var i = 0, n = 5, matricNo, fullName;
-            document.getElementById("tables").innerHTML += "<table id='records'>"
-            + "<tr><th>S/N</th><th>Matric No</th><th>Name</th></tr>"
-            // iteration that would creates a row for each record.
-            // Hibernate mode for now
-            do{
-                i++;
-                document.getElementById("tables").innerHTML += "<tr><td>"+ i +
-                    "</td><td>matricNo</td><td>fullName</td></tr>";
-            }while(i < n);
-            // the next line is disturbing the whole table.
-            //document.getElementById("tables").innerText = "</table>";
-        </script>
-        <style>
-            table#records{
-                border-style: double;
-                padding: 5px;
-            }
-        </style>
+        <div class="mbody">
+            <div id="showAllStudents">
+            </div>
+            <div id="showEnrolledStudents"></div>
+            <div class=""></div>
+        </div>
+        <footer class="mbody">
+            <p>
+                        Designed by Momoh Cyrus &copy;<em id="showDate"></em> 
+            </p>
+        </footer>  
     </body>
 
     <script src="./js/axios.min.js"></script>
     <script src="./js/endpoints.js"></script>
     <script src="./js/adminEndpoints.js"></script>
     <script src="./js/admin.js"></script>
-
+    <script src="./js/document2.js"></script>
     <script>
         init();
     </script>

@@ -1,6 +1,5 @@
 let currentPhoto;
 let currentPhotoPath;
-let photoId;
 
 function init() {
     const form = document.getElementById("uploadForm");
@@ -28,20 +27,35 @@ function handleUpload(e) {
     const data = new FormData();
     data.append("file", currentPhoto);
 
-    return ploadEnrollmentPhoto(data)
+    return uploadEnrollmentPhoto(data)
         .then(res => {
-            photoId = res.data.id;
+            return res.data;
         });
 }
 
 function handleSubmit(e) {
     e.preventDefault();
-
+    
+    const form = document.querySelector('#enrollForm');
+    const model = compileData(form);
+    
     handleUpload(undefined)
-        .then(() => {
-            // TODO: Create submit object and add photoId
-            const model = {};
-            enrollUser(model);
-            // TODO: Clear the form fields...
+        .then((res) => {
+            model.photoId = res.id;
+            enrollUser(model).then(() => {
+                form.reset();
+                window.location.replace("/");
+            });
         });
+}
+
+function compileData(form) {
+    const data = new FormData(form);
+
+    const model = {};
+
+    for (var [key, value] of data.entries()) {
+        model[key] = value;
+    }
+    return model;
 }

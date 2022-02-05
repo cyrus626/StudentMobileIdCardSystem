@@ -11,6 +11,10 @@ function myFunctn() {
     }
 }
 
+function enrollNow(){
+    window.location.replace("./enrolment.html")
+}
+
 function handleLogin(e) {
     e.preventDefault();
 

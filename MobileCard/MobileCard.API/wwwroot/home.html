@@ -5,9 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./css/mobileId.css"/>
+        <style>
+            h2{
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
-        <h3>UofA Mobile Id</h3>
+        <h3 class="mbody">UofA Mobile Id</h3>
         <div>
             <header class="mbody">
                 <h1 style="text-align: center;" id="matricNo">Matric Number here</h1>
@@ -18,29 +23,57 @@
                     </ul>
                 </nav>
             </header>
-            <nav class="mbody">
+            <div class="mbody">
                 <ul>
-                    <li>View card</li>
                     <li>
                         <a href="#" onclick="logout()">
                             Log out
                         </a>
                     </li>
                 </ul>
-            </nav>
-            <section class="mbody">
+            </div>
+            <div class="mbody">
                 <form>
                     <ul>
-                        <li><h2 >Name in full</h2></li>
-                        <li><h2>Course of Study</h2></li>
-                        <li><h2>Department, Faculty</h2></li>
-                        <li><h2>Current level</h2></li>
+                        <li>
+                            <div id="passport"></div>
+                        </li>
+                        <li>
+                            <label>Name</label>
+                            <h2 id="fullName"></h2>
+                        </li>
+                        <li>
+                            <label>Course of Study</label>
+                            <h2 id="courseOffered"></h2>
+                        </li>
+                        <li>
+                            <label></label>Faculty</label>
+                            <h2 id="faculty"></h2>
+                        </li>
+                        <li>
+                            <label>Current level</label>
+                            <h2 id="level"></h2>
+                        </li>
+                        <li>
+                            <label>Year of entry</label>
+                            <h2 id="yearOfEntry"></h2>
+                        </li>
+                        <li>
+                            <label>Email</label>
+                            <h2 id="email"></h2>
+                        </li>
+                        <li>
+                            <label>Phone number</label>
+                            <h2 id="phoneNumber"></h2>
+                        </li>
                     </ul>
                 </form>
-            </section>
-            <footer>
-                
-            </footer>   
+            </div>
+            <footer class="mbody">
+                <p>
+                    Designed by Momoh Cyrus @<em id="showDate"></em> 
+                </p>
+            </footer>  
         </div>
             
     </body>
@@ -51,6 +84,7 @@
 
 
     <script src="./js/document.js"></script>
+    <script src="./js/document2.js"></script>
     <script src="./js/home.js"></script>
     
     <script>

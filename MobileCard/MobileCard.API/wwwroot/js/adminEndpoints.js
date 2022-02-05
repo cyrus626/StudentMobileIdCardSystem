@@ -6,20 +6,22 @@ const REJECT_ENROLLMENT = "manage/enrollment/{enrollmentId}/reject";
 let allStudents, allApplications;
 
 function getStudents() {
-    $axios.get(GET_REGISTERED_STUDENTS)
+    return $axios.get(GET_REGISTERED_STUDENTS)
         .then(res => {
             allStudents = res.data;
             console.log(allStudents);
+            return res.data;
         }).catch(err => {
             getError(err);
         });
 }
 
 function getApplications() {
-    $axios.get(GET_ENROLLMENT_APPLICATIONS)
+    return $axios.get(GET_ENROLLMENT_APPLICATIONS)
         .then(res => {
             allApplications = res.data;
             console.log(allApplications);
+            return res.data;
         }).catch(err => {
             getError(err);
         });

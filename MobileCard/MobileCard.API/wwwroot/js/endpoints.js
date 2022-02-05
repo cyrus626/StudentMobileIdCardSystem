@@ -92,6 +92,7 @@ function enrollUser(model) {
     return $axios.post(ENROLL, model)
         .then(res => {
             // Report success to user
+            alert("Successful!, \n Data collected");
         }).catch(err => {
             getError(err, true);
         });
