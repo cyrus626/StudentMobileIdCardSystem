@@ -11,8 +11,12 @@ function myFunctn() {
     }
 }
 
+function viewCard(){
+	window.replace("./viewer.html");
+}
+
 function enrollNow(){
-    window.location.replace("./enrolment.html")
+    window.location.replace("./enrolment.html");
 }
 
 function handleLogin(e) {

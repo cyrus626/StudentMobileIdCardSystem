@@ -6,6 +6,32 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./css/mobileId.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
+		<style>
+            #usersPassport{
+                width: 40%; 
+                width: 150px; 
+                border-top-left-radius: 5px; 
+                border-bottom-right-radius:5px;
+
+            }
+            .cardHead::after{
+                content: none;
+            }
+            P.cardHeader{
+                border-radius: 10px;
+                background-color: red;
+                color: white;
+                padding: 5px;
+            }
+            .cardHead .cardBody{
+                padding: 0px;
+                position: relative;
+                float: left;
+            }
+            table{
+                text-align: left;
+            }
+        </style>
     </head>
     <body>
         <!-- Not yet completed -->
@@ -49,33 +75,14 @@
                         </div>
                     </div>
                 </section>
-            </div>   
+            </div> 
+			<footer class="mbody">
+                <p>
+                    Designed by Momoh Cyrus @<em id="showDate"></em> 
+                </p>
+            </footer>
         </div>
-        <style>
-            #usersPassport{
-                width: 40%; 
-                width: 150px; 
-                border-top-left-radius: 5px; 
-                border-bottom-right-radius:5px;
-
-            }
-            .cardHead::after{
-                content: none;
-            }
-            P.cardHeader{
-                border-radius: 10px;
-                background-color: red;
-                color: white;
-                padding: 5px;
-            }
-            .cardHead .cardBody{
-                padding: 0px;
-                position: relative;
-                float: left;
-            }
-            table{
-                text-align: left;
-            }
-        </style>
+		<script src="./js/document.js"></script>
+		<script src="./js/document2.js"></script>
     </body>
 </html>

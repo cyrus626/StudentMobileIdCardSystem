@@ -6,6 +6,11 @@
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="./css/mobileId.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <style>
+            table{
+                border: groove rgb(0,0,0);
+            }
+        </style>
     </head>
     <body>
         <h3 class="mbody">
@@ -21,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a onclick="enrollNow()">
+                <a href="#" onclick="enrollNow()">
                     Enroll new user?
                 </a>
             </li>
@@ -39,6 +44,11 @@
         </footer>  
     </body>
 
+    <script>
+        function enrollNow(){
+            window.location.replace("./enrolment.html")
+        }
+    </script>    
     <script src="./js/axios.min.js"></script>
     <script src="./js/endpoints.js"></script>
     <script src="./js/adminEndpoints.js"></script>

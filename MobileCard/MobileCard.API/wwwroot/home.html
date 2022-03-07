@@ -9,64 +9,96 @@
             h2{
                 text-align: center;
             }
+			table th td{
+				border: solid;
+			}
         </style>
     </head>
     <body>
         <h3 class="mbody">UofA Mobile Id</h3>
         <div>
-            <header class="mbody">
-                <h1 style="text-align: center;" id="matricNo">Matric Number here</h1>
-                <nav class="homeNav" hidden="hidden">
-                    <ul class="homeNav">
-                        <a href="viewer.html"></a><li>View card</li></a>
-                        <li>Log out</li>
-                    </ul>
-                </nav>
+            <header class="mbody" style="background-color: green;">
+                <h1 style="text-align: center; " id="matricNo">Matric Number here</h1>
             </header>
-            <div class="mbody">
-                <ul>
+            <div>
+                <ul class="mNav mbody">
                     <li>
                         <a href="#" onclick="logout()">
                             Log out
                         </a>
                     </li>
+					<li>
+						<a href="#" onclick="viewCard()">
+							View card 
+						</a>
+					</li>
                 </ul>
             </div>
-            <div class="mbody">
+            <div class="mbody" align="center">
                 <form>
-                    <ul>
-                        <li>
-                            <div id="passport"></div>
-                        </li>
-                        <li>
-                            <label>Name</label>
-                            <h2 id="fullName"></h2>
-                        </li>
-                        <li>
-                            <label>Course of Study</label>
-                            <h2 id="courseOffered"></h2>
-                        </li>
-                        <li>
-                            <label></label>Faculty</label>
-                            <h2 id="faculty"></h2>
-                        </li>
-                        <li>
-                            <label>Current level</label>
-                            <h2 id="level"></h2>
-                        </li>
-                        <li>
-                            <label>Year of entry</label>
-                            <h2 id="yearOfEntry"></h2>
-                        </li>
-                        <li>
-                            <label>Email</label>
-                            <h2 id="email"></h2>
-                        </li>
-                        <li>
-                            <label>Phone number</label>
-                            <h2 id="phoneNumber"></h2>
-                        </li>
-                    </ul>
+					<table>
+						<tr>
+							<td anlign="center" colspan="2">
+								<div id="passport"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Name</label>
+							</td>
+							<td>
+								<h2 id="fullName"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Course of Study</label>
+							</td>
+							<td>
+                            	<h2 id="courseOffered"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Faculty</label>
+							</td>
+							<td>
+								<h2 id="faculty"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Current level</label>
+							</td>
+							<td>
+								<h2 id="level"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Year of entry</label>
+                            </td>
+							<td>
+								<h2 id="yearOfEntry"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Email</label>
+							</td>
+							<td>
+								<h2 id="email"></h2>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label>Phone number</label>
+							</td>
+							<td>
+								<h2 id="phoneNumber"></h2>
+							</td>
+						</tr>
+					</table>
                 </form>
             </div>
             <footer class="mbody">
